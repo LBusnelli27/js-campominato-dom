@@ -38,3 +38,7 @@ footer {
 .my-col.clicked {
     background-color: #96be25;
 }
+
+.my-col.clicked-bomb {
+    background-color: rgb(172, 4, 4);
+}

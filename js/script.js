@@ -18,12 +18,19 @@ function createGridSquare() {
  * @param {*} nBox Number of boxes generated
  */
 function createCol(nBox) {
+    const bombs = genBombs(16, nBox);
+    console.log(bombs);
+
     for(let i = 0; i < nBox; i++) {
         const currentSquare = createGridSquare();
-        currentSquare.innerHTML = `${i + 1}`
-        
+        currentSquare.innerHTML = `${i + 1}`;
+
         currentSquare.addEventListener('click', function() {
-            this.classList.add('clicked')
+            if(!bombs.includes(i + 1)) {
+                currentSquare.classList.add('clicked');
+            } else {
+                currentSquare.classList.add('clicked-bomb');
+            }
         })
         
         playGround.appendChild(currentSquare);
@@ -100,6 +107,3 @@ const resetBtn = document.getElementById('reset-button');
 resetBtn.addEventListener('click', function() {
     resetNewGame();
 })
-
-let bombee = genBombs(16, 80);
-console.log(bombee);
