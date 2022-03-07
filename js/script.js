@@ -21,18 +21,24 @@ function createCol(nBox) {
     const bombs = genBombs(16, nBox);
     console.log(bombs);
 
+    let points = 0;
+
     for(let i = 0; i < nBox; i++) {
         const currentSquare = createGridSquare();
         currentSquare.innerHTML = `${i + 1}`;
 
+        
+
         currentSquare.addEventListener('click', function() {
             if(!bombs.includes(i + 1)) {
                 currentSquare.classList.add('clicked');
+                points++;
             } else {
                 currentSquare.classList.add('clicked-bomb');
+                endGamePhrase.innerHTML = `Hai perso. Il tuo punteggio: ${points}`
             }
         })
-        
+
         playGround.appendChild(currentSquare);
     }
 }
@@ -42,6 +48,7 @@ function createCol(nBox) {
  */
 function resetNewGame() {
     document.getElementById('my-play-ground').innerHTML = "";
+    endGamePhrase.innerHTML = "";
 }
 
 /**
@@ -87,9 +94,12 @@ function generateUniqueRandomNumber( numsBlacklist, min, max){
 
 const playGround = document.getElementById('my-play-ground');
 
+const endGamePhrase = document.getElementById('points-end');
+
 const playBtn = document.getElementById('play-button');
 playBtn.addEventListener('click', function() {
     console.log('Stai cliccando il bottone play!');
+
     const difficultyChoise = document.getElementById('inputGroupSelect');
     if (difficultyChoise.value == 1) {
         createCol(100);
