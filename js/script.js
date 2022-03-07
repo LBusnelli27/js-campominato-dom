@@ -37,6 +37,44 @@ function resetNewGame() {
     document.getElementById('my-play-ground').innerHTML = "";
 }
 
+/**
+ * 
+ * @param {*} bombs Number of bombs
+ * @param {*} numberMaxCells Total namber of cells
+ * @returns Array of numbers (bombs)
+ */
+function genBombs(bombs, numberMaxCells) {
+    const bombsArray = [];
+
+    for(let i = 0; i < bombs; i++) {
+        bombsArray.push(generateUniqueRandomNumber(bombsArray, 1, numberMaxCells));
+    }
+
+    return bombsArray;
+}
+
+/**
+ * This function generate unique number so it don't generate a number twice
+ * 
+ * @param {*} numsBlacklist The blacklist of numbers to check
+ * @param {*} min Minimum value
+ * @param {*} max Maximum value
+ * @returns A random generated integer which is not present in the blacklist
+ */
+function generateUniqueRandomNumber( numsBlacklist, min, max){
+    let check = false;
+    let randomInt;
+
+    while ( !check ){
+        randomInt  =  Math.floor(Math.random() * ((max + 1) - min) + min);
+        if ( !numsBlacklist.includes(randomInt)  ){
+            check = true;
+        }
+    }
+
+    return randomInt;
+}
+
 // ********** END FUNCTION **********
 
 
@@ -62,3 +100,6 @@ const resetBtn = document.getElementById('reset-button');
 resetBtn.addEventListener('click', function() {
     resetNewGame();
 })
+
+let bombee = genBombs(16, 80);
+console.log(bombee);
