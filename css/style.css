@@ -1,0 +1,40 @@
+header,
+footer {
+    padding: .7rem 5rem;
+}
+
+.clearfix::after {
+    content: '';
+    clear: both;
+    display: table;
+}
+
+.my-img-header {
+    width: 65px;
+}
+
+.my-bg-main {
+    background-color: #2596be;
+}
+
+#my-play-ground {
+    margin: 0 auto;
+    width: 1000px;
+    height: 1000px;
+}
+
+.my-col {
+    float: left;
+    text-align: center;
+    line-height: 100px;
+
+    width: calc(100% / 10);
+    height: 100px;
+    border: 2px solid black;
+
+    cursor: crosshair;
+}
+
+.my-col.clicked {
+    background-color: #96be25;
+}
